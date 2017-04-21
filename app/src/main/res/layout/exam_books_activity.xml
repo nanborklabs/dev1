@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <include layout="@layout/top_view_pager"
+                android:id="@+id/combo_top_container"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_below="@id/combo_top_container"
+                android:id="@+id/e_text_holder"
+                android:layout_height="80dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/exam_e_text"
+                    android:layout_marginLeft="16dp"
+                    android:text="Explore Books"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="Books Expert Recommend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/exam_e_text"
+                    android:layout_alignStart="@+id/exam_e_text"
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/textView2" />
+
+                <Button
+                    android:text="see more"
+                    android:background="?attr/borderlessButtonStyle"
+                    android:textAllCaps="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/button" />
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_below="@id/e_text_holder"
+                android:layout_height="match_parent">
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="64dp"
+                    android:layout_marginRight="64dp"
+                    android:layout_marginEnd="64dp"
+
+                    android:layout_marginStart="64dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:visibility="invisible"
+
+                    android:layout_marginTop="200dp"
+                    android:id="@+id/home_progress_bar"
+                    />
+
+                <GridView
+
+
+                    android:layout_margin="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:padding="8dp"
+                    android:verticalSpacing="5dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:horizontalSpacing="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:isScrollContainer="false"
+                    android:numColumns="2"
+                    android:gravity="center"
+                    android:id="@+id/home_grid"
+                    android:layout_gravity="center">
+
+                </GridView>
+
+
+            </FrameLayout>
+
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<FrameLayout android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/home_top_card"
+            android:layout_margin="12dp"
+            android:id="@+id/top_include_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Explore"
+            android:textSize="20sp"
+            android:id="@+id/explore_text"
+            android:gravity="center"
+            android:layout_below="@id/top_include_container"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_below="@id/explore_text"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:layout_marginEnd="64dp"
+
+                android:layout_marginStart="64dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:visibility="invisible"
+                android:layout_marginBottom="150dp"
+                android:layout_marginTop="200dp"
+                android:id="@+id/home_progress_bar"
+                />
+
+            <com.strictlyindian.rentsmart.CustomUI.CustomGridView
+
+
+                android:layout_margin="4dp"
+                android:layout_marginBottom="8dp"
+                android:padding="8dp"
+                android:verticalSpacing="5dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:horizontalSpacing="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:isScrollContainer="true"
+                android:numColumns="2"
+                android:gravity="center"
+                android:id="@+id/home_grid"
+                android:layout_gravity="center">
+
+            </com.strictlyindian.rentsmart.CustomUI.CustomGridView>
+
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+
+</FrameLayout>
+
+</ScrollView>

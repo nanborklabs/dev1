@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.strictlyindian.replay.CustomUI.ElasticDragDismissFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/draggable_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionGroup="false"
+    app:dragDismissDistance="112dp"
+    app:dragDismissScale="0.95"
+>
+    <!-- Use a separate view for the background, rather than on the root view because it is a
+         shared element. Otherwise it interferes with the window enter transition i.e. as it is
+         resized for the shared element transition, many views are considered 'off-screen' so
+         visibility transitions are not run. -->
+    <View
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_light"/>
+
+    <com.strictlyindian.replay.CustomUI.ParallaxScrimageView
+        android:id="@+id/shot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/shot_collapsed_app_bar_height"
+        android:foreground="@drawable/mid_grey_ripple"
+        android:stateListAnimator="@animator/app_bar_pin"
+        android:background="@color/light_grey"
+        app:scrimColor="@color/scrim"
+        app:scrimAlpha="0"
+        app:maxScrimAlpha="0.4"
+        app:parallaxFactor="-0.5" />
+
+    <!-- We're 'faking' a toolbar here as we just want a back button.
+         This approach lets the borderless ripple extend beyond the back button's bounds,
+         toolbar clips it. Wrapping layout needed for the ripple. -->
+    <FrameLayout
+        android:id="@+id/back_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:elevation="4dp">
+
+        <!-- animate alpha in DribbleShot#enterAnimation
+             margins push out parent for the borderless ripple -->
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="?android:actionBarSize"
+            android:layout_height="?android:actionBarSize"
+            android:layout_marginEnd="@dimen/padding_normal"
+            android:layout_marginBottom="@dimen/padding_normal"
+            android:src="@drawable/ic_arrow_back"
+            android:background="@drawable/mid_grey_ripple" />
+
+    </FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dribbble_comments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/padding_normal"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+    <com.strictlyindian.replay.CustomUI.FABToggle
+        android:id="@+id/fab_heart"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
+        android:elevation="@dimen/z_fab_over_touchable_app_bar"
+        android:background="@drawable/fab_dribbble_fav"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/padding_normal"
+        android:stateListAnimator="@animator/raise"
+        android:src="@drawable/ic_wheelbarrow" />
+
+</com.strictlyindian.replay.CustomUI.ElasticDragDismissFrameLayout>

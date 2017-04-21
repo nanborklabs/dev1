@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:text="Hello"
+    android:gravity="center"
+    android:background="@color/material_white"
+    android:textSize="18sp"
+
+    android:backgroundTint="@color/material_white"
+    android:textColor="@color/material_black"
+    android:textStyle="bold"
+    android:id="@+id/duration_text"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+</TextView>
+
+
+<!--<LinearLayout
+android:layout_width="match_parent"
+android:layout_below="@id/vp_price_div"
+android:layout_marginTop="8dp"
+android:id="@+id/pv_books_summ_container"
+android:orientation="vertical"
+android:weightSum="2"
+android:layout_height="120dp">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_weight="1.4"
+    android:text="THis is a really long text . we have to make sure that eahc text is covered here and by the way all te Text should be comlied within this sentence if no there"
+    android:ellipsize="end"
+    android:paddingLeft="16dp"
+    android:layout_marginTop="20"
+    android:layout_marginRight="16dp"
+    android:paddingTop="4dp"
+    android:id="@+id/summ_text"
+    android:textColor="@color/myblack"
+    android:paddingBottom="4dp"
+    android:textSize="18sp"
+
+    android:maxLines="3"
+    android:layout_height="0dp" />
+<Button
+    android:layout_width="match_parent"
+    android:text="Details"
+    android:id="@+id/summary_button"
+    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+    android:layout_weight="0.8"
+    android:layout_height="0dp" />
+
+</LinearLayout>
+
+<View
+android:layout_width="match_parent"
+android:layout_height="1dp"
+android:background="@color/colorPrimary"
+android:layout_marginTop="16dp"
+android:layout_marginLeft="12dp"
+android:layout_marginRight="12dp"
+android:layout_below="@+id/pv_books_summ_container"
+android:layout_centerHorizontal="true"
+android:id="@+id/view3" />-->

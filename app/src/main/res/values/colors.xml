@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="io15_dark_grey">#FF455A64</color>
+    <color name="io15_grey">#FF607D8B</color>
+    <color name="io15_light_grey">#FF90A4AE</color>
+    <color name="io15_aqua_dark">#FF4DD0E1</color>
+    <color name="io15_aqua_light">#FF80DEEA</color>
+    <color name="io15_blue_grey_100">#ffcfd8dc</color>
+    <color name="io15_white">#FFFFFFFF</color>
+    <color name="card">#fff</color>
+    <color name="cyan_a700_plus">#ff006574</color>
+    <color name="body_text_1_inverse">#deffffff</color>
+    <color name="body_text_2_inverse">#8affffff</color>
+
+    <color name="app_body_text_1">#de000000</color>
+    <color name="app_body_text_2">#8a000000</color>
+    <color name="app_body_text_disabled">#44000000</color>
+    <color name="app_body_text_1_inverse">#deffffff</color>
+    <color name="app_body_text_2_inverse">#8affffff</color>
+    <color name="flat_button_text">#ff008094</color>
+    <color name="text_on_primary">#ff004446</color>
+    <color name="subtitle_on_primary">#de004446</color>
+    <color name="unselected_tab_on_primary">#b3004446</color>
+    <color name="background_light">#FFFFFF</color>
+    <color name="light_grey">#fff5f5f5</color>
+    <color name="scrim">#99323232</color>
+
+
+    <color name="dribbble">#fff06292</color>
+    <color name="my_black">#36353F</color>
+</resources>

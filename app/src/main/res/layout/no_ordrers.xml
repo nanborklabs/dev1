@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/no_order_image"
+
+        android:layout_height="450dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/no_order_button"
+        android:layout_height="60dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:text="Browse Products"
+        android:layout_below="@id/no_order_image"
+       >
+
+    </Button>
+
+</RelativeLayout>
