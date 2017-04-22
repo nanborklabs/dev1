@@ -7,10 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.strictlyindian.rentsmart.R;
+import com.strictlyindian.rentsmart.utils.ScreenUtil;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.wasabeef.picasso.transformations.BlurTransformation;
 
 /**
  * Created by nandhu on 21/4/17.
@@ -20,6 +26,20 @@ import butterknife.ButterKnife;
 public class ProfileFragment extends Fragment {
 
 
+    @BindView(R.id.profile_bg_image)
+    ImageView mBackgroundImage;
+    @BindView(R.id.profile_image)
+    ImageView mProfileImage;
+    @BindView(R.id.profile_name)
+    TextView mName;
+    @BindView(R.id.imageView2)
+    ImageView imageView2;
+    @BindView(R.id.profile_location)
+    TextView mLocation;
+    @BindView(R.id.imageView10)
+    ImageView imageView10;
+    @BindView(R.id.profile_phone_number)
+    TextView mPhoneNumber;
     private Context mContext;
 
     @Override
@@ -30,9 +50,18 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View v = LayoutInflater.from(mContext).inflate(R.layout.profile_frag,container,false);
-        ButterKnife.bind(this,v);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.profile_frag, container, false);
+        ButterKnife.bind(this, v);
 
+
+        Picasso.with(mContext)
+                .load(R.mipmap.pop)
+                .into(mProfileImage);
+
+        Picasso.with(mContext)
+                .load(R.mipmap.fifaa)
+                .transform(new BlurTransformation(mContext))
+                .into(mBackgroundImage);
 
 
         return v;
@@ -82,7 +111,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mContext != null){
+        if (mContext != null) {
             mContext = null;
         }
     }

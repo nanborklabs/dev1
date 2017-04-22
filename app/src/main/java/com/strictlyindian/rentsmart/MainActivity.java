@@ -2,9 +2,11 @@ package com.strictlyindian.rentsmart;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,16 +17,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabReselectListener;
+import com.roughike.bottombar.OnTabSelectListener;
 import com.strictlyindian.rentsmart.Activity.ExamBooksActivity;
 import com.strictlyindian.rentsmart.Activity.GenrealBooksActivity;
 import com.strictlyindian.rentsmart.Activity.OrganisationBooksActivity;
+import com.strictlyindian.rentsmart.Fragments.CartFragment;
+import com.strictlyindian.rentsmart.Fragments.CategoriesFragment;
 import com.strictlyindian.rentsmart.Fragments.MainFragment;
+import com.strictlyindian.rentsmart.Fragments.NotificationsFragment;
+import com.strictlyindian.rentsmart.Fragments.ProfileFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnTabSelectListener, OnTabReselectListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -69,10 +78,22 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        setUpBottomar();
        showMainFrag();
 
 
     }
+
+    private void setUpBottomar() {
+        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar.setOnTabSelectListener(this);
+        bottomBar.setOnTabReselectListener(this);
+        bottomBar.setLongPressHintsEnabled(true);
+
+    }
+
+
 
     private void showMainFrag() {
         getSupportFragmentManager().
@@ -144,5 +165,41 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         startActivity(i);
         return true;
+    }
+
+    @Override
+    public void onTabSelected(@IdRes int tabId) {
+
+        Fragment mFragment = null;
+        switch (tabId){
+            case R.id.tab_home:
+                mFragment = new MainFragment();
+                break;
+            case R.id.tab_categories:
+                mFragment  = new CategoriesFragment();
+                break;
+            case R.id.tab_notifications:
+                mFragment = new NotificationsFragment();
+                break;
+            case R.id.tab_profile:
+                mFragment = new ProfileFragment();
+                break;
+            case R.id.tab_cart:
+                mFragment = new CartFragment();
+                break;
+            default:
+                return;
+
+        }
+
+        getSupportFragmentManager().
+                beginTransaction()
+                .replace(R.id.frag_holder_main,mFragment)
+                .commit();
+    }
+
+    @Override
+    public void onTabReSelected(@IdRes int tabId) {
+
     }
 }

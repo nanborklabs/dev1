@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs>
     <tab
-        id="@+id/tab_favorites"
-        icon="@drawable/ic_cart"
-        title="Favorites" />
-    <tab
-        id="@+id/tab_nearby"
+        id="@+id/tab_home"
         icon="@drawable/ic_location"
-        title="Nearby" />
+
+        title="Home" />
     <tab
-        id="@+id/tab_friends"
+        id="@+id/tab_categories"
+        icon="@drawable/ic_location"
+        title="Categories" />
+    <tab
+        id="@+id/tab_notifications"
         icon="@drawable/ic_list"
-        title="Friends" />
+        title="Notifications" />
+    <tab
+        id="@+id/tab_profile"
+        icon="@drawable/ic_list"
+        title="Profile" />
+    <tab
+        id="@+id/tab_cart"
+        icon="@drawable/ic_list"
+        title="Cart" />
 </tabs>
