@@ -29,9 +29,11 @@ public class ProductGridAdapter extends BaseAdapter {
     public int Animated_item_count;
     public int last_pos=-1;
     private List<Product>  mlist;
+    GridCallback mCallback ;
 
-    public ProductGridAdapter(Context context, List<Product> mList) {
+    public ProductGridAdapter(Context context, List<Product> mList,GridCallback mCallbacks) {
         this.mContext=context;
+        this.mCallback = mCallbacks;
         this.mlist=mList;
         Animated_item_count=mList.size();
     }
@@ -53,7 +55,7 @@ public class ProductGridAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
        if (convertView==null){
            convertView= LayoutInflater.from(parent.getContext()).inflate(R.layout.product_grid_item,parent,false);
            mView=convertView;
@@ -80,8 +82,31 @@ public class ProductGridAdapter extends BaseAdapter {
                 .centerCrop()
                 .transform(new RoundedCornersTransformation(10,5))
                 .into(im);
+        final  int pos = position;
+        im.setTransitionName("pos"+position);
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (pos%3){
+                    case 0:
+                        mCallback.productClicked(mView,pos,pos);
+                        break;
+                    case 1:
+                        mCallback.miniShow(mView,pos,pos);
+                        break;
+                    case 2:
+                        mCallback.dribbleShow(mView,pos,pos);
+                        break;
 
-//        runEnteranim(convertView,position);
+                    default:
+                        mCallback.productClicked(mView,pos,pos);
+                        break;
+                }
+
+            }
+        });
+
+        runEnteranim(convertView,position);
         return convertView;
 
 
@@ -89,22 +114,29 @@ public class ProductGridAdapter extends BaseAdapter {
     }
 
     private void runEnteranim(View convertView, int position) {
-        Log.d("Animation",""+position);
+        Log.d("Animation", "" + position);
 
-        if (position>=Animated_item_count){
-            Log.d("Animation","postion one");
+        if (position >= Animated_item_count) {
+            Log.d("Animation", "postion one");
             return;
         }
-        if (position>last_pos){
+        if (position > last_pos) {
 
-            Log.d("Animation","inside if");
-            last_pos=position;
+            Log.d("Animation", "inside if");
+            last_pos = position;
             convertView.setTranslationY(ScreenUtil.getScreenHeight(mContext));
             convertView.animate().translationY(0)
                     .setInterpolator(new DecelerateInterpolator(3.f))
                     .setDuration(700)
                     .start();
         }
-        }
+    }
+
+    public interface GridCallback{
+        void productClicked(View holder, int pid , int pos);
+        void miniShow(View hold,int pid,int pos);
+        void dribbleShow(View holder,int pid,int post);
+
+    }
 }
 

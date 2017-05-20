@@ -2,23 +2,27 @@
 <tabs>
     <tab
         id="@+id/tab_home"
-        icon="@drawable/ic_location"
-
+        icon="@drawable/home_selector"
+        barColorWhenSelected="#36353F"
         title="Home" />
     <tab
         id="@+id/tab_categories"
-        icon="@drawable/ic_location"
+        icon="@drawable/ic_list"
+        barColorWhenSelected="@color/material_blueA200"
         title="Categories" />
     <tab
         id="@+id/tab_notifications"
-        icon="@drawable/ic_list"
+        icon="@drawable/ic_notifications_none_black_24px"
+        barColorWhenSelected="@color/material_yellowA400"
         title="Notifications" />
     <tab
         id="@+id/tab_profile"
-        icon="@drawable/ic_list"
+        icon="@drawable/ic_avatar"
+        barColorWhenSelected="@color/material_redA200"
         title="Profile" />
     <tab
         id="@+id/tab_cart"
-        icon="@drawable/ic_list"
+        icon="@drawable/ic_cart"
+        barColorWhenSelected="#5D4037"
         title="Cart" />
 </tabs>

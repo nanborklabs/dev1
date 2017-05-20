@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity
 
 
         setUpBottomar();
-       showMainFrag();
+        showMainFrag();
 
 
     }
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity
         bottomBar.setOnTabSelectListener(this);
         bottomBar.setOnTabReselectListener(this);
         bottomBar.setLongPressHintsEnabled(true);
+
 
     }
 
@@ -150,14 +151,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.o_menu) {
 
             i = new Intent(this, OrganisationBooksActivity.class);
-        } else if (id == R.id.g_books) {
-            i = new Intent(this, GenrealBooksActivity.class);
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        }
+        else{
 
         }
 

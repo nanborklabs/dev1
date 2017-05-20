@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,9 +32,10 @@ import butterknife.ButterKnife;
  * It is provided by {@link MainFragmentAdapter }
  */
 
-public class BrosweProductFragments extends Fragment implements ComboAdapter.ComboInterface, ViewPager.OnPageChangeListener {
+public class BrosweProductFragments extends Fragment implements ComboAdapter.ComboInterface, ViewPager.OnPageChangeListener, ProductGridAdapter.GridCallback {
 
 
+    private static final String TAG = "BPFRAGMENT";
     @BindView(R.id.home_top_pager)
     ViewPager mComboPager;
     @BindView(R.id.indicator)
@@ -84,7 +86,7 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
         }
 
         if (mGridView != null && mGridView.isShown()){
-            ProductGridAdapter mGAdapter = new ProductGridAdapter(mContext,CartHandler.getInstance(mContext).getMockProducts());
+            ProductGridAdapter mGAdapter = new ProductGridAdapter(mContext,CartHandler.getInstance(mContext).getMockProducts(),this);
             mGridView.setAdapter(mGAdapter);
             mGridView.setExpanded(true);
 
@@ -183,5 +185,33 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    /*Show Swipable View Pager here*/
+
+    @Override
+    public void productClicked(View holder, int pid, int pos) {
+        SwipableProductFragment mFragment = new Swipa
+        Log.d(TAG, "productClicked: ");
+        getChildFragmentManager()
+                .beginTransaction()
+                .addSharedElement(holder.findViewById(R.id.p_item_image), "pos")
+                .replace(R.id.container, newFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+
+    /*Show Mini View lie Whatsapp*/
+    @Override
+    public void miniShow(View hold, int pid, int pos) {
+        Log.d(TAG, "miniShow: ");
+    }
+
+
+    /*SHow Dribble hEre using Elastic Layout*/
+    @Override
+    public void dribbleShow(View holder, int pid, int post) {
+        Log.d(TAG, "dribbleShow: ");
     }
 }

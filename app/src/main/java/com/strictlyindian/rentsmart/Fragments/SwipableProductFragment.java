@@ -3,25 +3,32 @@ package com.strictlyindian.rentsmart.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.strictlyindian.rentsmart.R;
 
-import butterknife.ButterKnife;
-
 /**
- * Created by nandhu on 22/4/17.
- * The Fragment which Displays Notifications
- *
- * The Ntotifications are come from FCM and  are parsed and displayed here
- *
+ * Created by nandhu on 20/5/17.
  */
 
-public class NotificationsFragment extends android.support.v4.app.Fragment {
+public class SwipableProductFragment extends Fragment{
+
 
     private Context mContext;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View vi = LayoutInflater.from(mContext).inflate(R.layout.swipe_fragment,container,false);
+    }
 
     @Override
     public void onDestroyView() {
@@ -36,32 +43,8 @@ public class NotificationsFragment extends android.support.v4.app.Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mContext = context;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.notification_fragment,container,false);
-        ButterKnife.bind(this,view);
-
-
-
-        //get THe Notofications here
-        //if Empty , show Empty Vieew
-        //else , recycelr view Id;
-
-
-
-
-
-        return view;
-    }
 
     @Override
     public void onDetach() {
@@ -81,8 +64,20 @@ public class NotificationsFragment extends android.support.v4.app.Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        if (mContext != null){
-            mContext = null;
-        }
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

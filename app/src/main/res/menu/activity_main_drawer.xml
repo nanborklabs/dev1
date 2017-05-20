@@ -4,31 +4,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/e_books"
+
             android:icon="@drawable/ic_menu_camera"
-            android:title="Exam Books" />
+            android:title="Books" />
         <item
             android:id="@+id/o_menu"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="For Startup" />
-        <item
-            android:id="@+id/g_books"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="General" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Profile" />
+            android:title="Sell Your Books" />
+
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_settings"
+
+                android:title="Settings" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:id="@+id/nav_about_us"
                 android:title="About Us" />
         </menu>
     </item>

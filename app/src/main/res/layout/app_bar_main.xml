@@ -10,26 +10,28 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
 
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:theme="@style/AppTheme.AppBarOverlay">
-
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-            <com.strictlyindian.rentsmart.CustomUI.HelviticaLight
-                android:layout_width="wrap_content"
-                android:text="Rentsmart"
-                android:textSize="26sp"
+            android:id="@+id/toolbar"
+            android:layout_height="?attr/actionBarSize">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@mipmap/bookaholic"
 
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                android:layout_gravity= "center"
-                android:layout_height="wrap_content" />
+                    android:layout_centerInParent="true"
 
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
         </android.support.v7.widget.Toolbar>
+
+
+
 
     </android.support.design.widget.AppBarLayout>
 
@@ -39,7 +41,8 @@
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-
+        android:elevation="12dp"
+        app:bb_behavior="shy"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
         app:bb_tabXmlResource="@xml/bottom_bar" />
