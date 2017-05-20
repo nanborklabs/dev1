@@ -1,30 +1,42 @@
 package com.strictlyindian.rentsmart.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v4.view.ViewPager;
+import android.transition.Fade;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.strictlyindian.rentsmart.Activity.PlaidViewActivity;
 import com.strictlyindian.rentsmart.Adapters.ComboAdapter;
 import com.strictlyindian.rentsmart.Adapters.MainFragmentAdapter;
 import com.strictlyindian.rentsmart.Adapters.ProductGridAdapter;
 import com.strictlyindian.rentsmart.CustomUI.CustomGridView;
 import com.strictlyindian.rentsmart.CustomUI.InkPageIndicator;
+import com.strictlyindian.rentsmart.CustomUI.ViewProductActivity;
 import com.strictlyindian.rentsmart.MainActivity;
 import com.strictlyindian.rentsmart.Model.Product;
 import com.strictlyindian.rentsmart.R;
 import com.strictlyindian.rentsmart.StorageHelpers.CartHandler;
+import com.strictlyindian.rentsmart.Transitions.DetailsTransition;
 import com.strictlyindian.rentsmart.utils.BundleKey;
+import com.strictlyindian.rentsmart.utils.ScreenUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.support.v4.app.ActivityOptionsCompat.makeSceneTransitionAnimation;
 
 /**
  * Created by nandhu on 20/4/17.
@@ -35,7 +47,7 @@ import butterknife.ButterKnife;
 public class BrosweProductFragments extends Fragment implements ComboAdapter.ComboInterface, ViewPager.OnPageChangeListener, ProductGridAdapter.GridCallback {
 
 
-    private static final String TAG = "BPFRAGMENT";
+    private static final String TAG = "BOOKAHOLIC";
     @BindView(R.id.home_top_pager)
     ViewPager mComboPager;
     @BindView(R.id.indicator)
@@ -52,6 +64,7 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "BPFRAG Oncreate");
     }
 
     @Nullable
@@ -68,6 +81,7 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        Log.d(TAG, "BPFRAG onDestroy View");
 
 
     }
@@ -90,7 +104,7 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
             mGridView.setAdapter(mGAdapter);
             mGridView.setExpanded(true);
 
-
+            Log.d(TAG, "BPFRAG onResume: ");
 
         }
     }
@@ -98,12 +112,14 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.d(TAG, " BPFRAG onActivityCreated: ");
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
+        Log.d(TAG, " BPFRAG onAttach: ");
     }
 
 
@@ -116,7 +132,14 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
         if (mComboPager != null) {
             mComboPager.removeOnPageChangeListener(this);
         }
+
+        Log.d(TAG, "BPFRAG onDestroy: ");
     }
+
+
+
+
+
 
     @Override
     public void onDetach() {
@@ -126,11 +149,13 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart: ");
 
 
         // Get What View Type This fragment must show?
@@ -160,6 +185,7 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
     @Override
     public void onStop() {
         super.onStop();
+        Log.d(TAG, "BPFRAG onStop: ");
     }
 
     @Override
@@ -191,14 +217,18 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
 
     @Override
     public void productClicked(View holder, int pid, int pos) {
-        SwipableProductFragment mFragment = new Swipa
-        Log.d(TAG, "productClicked: ");
-        getChildFragmentManager()
-                .beginTransaction()
-                .addSharedElement(holder.findViewById(R.id.p_item_image), "pos")
-                .replace(R.id.container, newFragment)
-                .addToBackStack(null)
-                .commit();
+
+        //get Product Product p = // TODO: 20/5/17 Add Product String
+//        b.putString(BundleKey.ARG_PRODUCT,);
+        ImageView img = (ImageView) holder.findViewById(R.id.p_item_image);
+        String trnasName = "pos"+pos;
+        Log.d(TAG, "Transition Name in "+trnasName);
+        Intent i = new Intent(getActivity(),ViewProductActivity.class);
+        i.putExtra(BundleKey.TRANS_NAME,trnasName);
+        Pair<View, String> p1 = Pair.create((View)img, trnasName);
+        ActivityOptionsCompat options = makeSceneTransitionAnimation(getActivity(), p1);
+        getActivity().startActivity(i, options.toBundle());
+
     }
 
 
@@ -213,5 +243,13 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
     @Override
     public void dribbleShow(View holder, int pid, int post) {
         Log.d(TAG, "dribbleShow: ");
+        ImageView img = (ImageView) holder.findViewById(R.id.p_item_image);
+        String trnasName = "pos"+post;
+        Log.d(TAG, "Transition Name in "+trnasName);
+        Intent i = new Intent(getActivity(),PlaidViewActivity.class);
+        i.putExtra(BundleKey.TRANS_NAME,trnasName);
+        Pair<View, String> p1 = Pair.create((View)img, trnasName);
+        ActivityOptionsCompat options = makeSceneTransitionAnimation(getActivity(), p1);
+        getActivity().startActivity(i, options.toBundle());
     }
 }

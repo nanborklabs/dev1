@@ -15,6 +15,6 @@ public class OrganisationBooksActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.startup_books);
+        setContentView(R.layout.dribble_top);
     }
 }
