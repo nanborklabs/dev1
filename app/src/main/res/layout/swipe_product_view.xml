@@ -3,23 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:id="@+id/vp_root"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/vp_image"
-            android:layout_width="match_parent"
-            android:layout_height="160dp" />
+       <FrameLayout
+           android:layout_width="match_parent"
+           android:id="@+id/top_holder"
+           android:layout_height="160dp">
+           <android.support.v4.view.ViewPager
+               android:id="@+id/vp_image_pager"
+               android:paddingTop="2dp"
+               android:layout_width="match_parent"
+               android:layout_height="160dp" />
+           <com.strictlyindian.rentsmart.CustomUI.InkPageIndicator
+
+               android:id="@+id/top_indicator"
+               android:layout_width="match_parent"
+
+               android:layout_height="wrap_content"
+               android:layout_gravity="bottom"
+               android:layout_marginBottom="20dp"
+               android:layout_marginTop="@dimen/padding_normal"
+               app:pageIndicatorColor="@color/material_grey300"
+               app:currentPageIndicatorColor="@color/my_black" />
+       </FrameLayout>
 
         <TextView
             android:id="@+id/vp_pname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/vp_image"
+            android:layout_below="@+id/top_holder"
             android:layout_marginStart="20dp"
             android:layout_marginTop="32dp"
             android:text="ProductName"
@@ -45,10 +62,10 @@
             android:layout_alignTop="@+id/vp_pname"
 
             app:anim_scale_factor="2"
-            app:circle_end_color="@color/colorAccent"
+            app:circle_end_color="@color/material_purple700"
             app:circle_start_color="@color/colorPrimary"
             app:dots_primary_color="@color/colorAccent"
-            app:dots_secondary_color="@color/colorPrimary"
+            app:dots_secondary_color="@color/material_yellow600"
             app:icon_size="25dp"
 
             app:liked="false" />
@@ -102,11 +119,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="112"
-            android:layout_marginTop="8dp"
+            android:textSize="18sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
 
             android:layout_below="@+id/pv_avail_text"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignStart="@+id/vp_div_2" />
 
         <TextView
             android:id="@+id/vp_time_text"
@@ -114,7 +131,7 @@
             android:layout_height="wrap_content"
             android:text="2 Weeks"
             android:layout_below="@+id/vp_price_text"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignStart="@+id/vp_price_text" />
 
         <TextView
             android:id="@+id/pv_avail_text"
@@ -169,6 +186,20 @@
             android:layout_height="60dp"
             android:layout_below="@+id/vp_about_book_text_vale"
             android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:maxWidth="80dp"
+            android:maxLines="3"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            android:gravity="center"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crime &amp; Thriller"
+            android:layout_alignEnd="@+id/vp_div_2"
+            android:layout_below="@+id/pv_avail_text"
+            android:layout_above="@+id/vp_div_2" />
 
 
     </RelativeLayout>

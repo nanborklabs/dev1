@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by nandhu on 16/3/17.
+ * +The Horizontal Swipe View Pageer
  *
  */
 
@@ -88,6 +89,7 @@ public class ViewProductActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 Log.d(TAG, "onPageSelected: " + mPager.getRealItem());
+
             }
 
             @Override

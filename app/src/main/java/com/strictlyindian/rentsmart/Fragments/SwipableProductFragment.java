@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -23,10 +25,17 @@ import com.google.gson.Gson;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
+import com.strictlyindian.rentsmart.Adapters.ComboAdapter;
+import com.strictlyindian.rentsmart.Adapters.ImageAdapter;
+import com.strictlyindian.rentsmart.CustomUI.InkPageIndicator;
 import com.strictlyindian.rentsmart.Model.Product;
+import com.strictlyindian.rentsmart.Model.ProductImage;
 import com.strictlyindian.rentsmart.R;
 import com.strictlyindian.rentsmart.utils.BundleKey;
 import com.strictlyindian.rentsmart.utils.GListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +47,7 @@ import static android.content.ContentValues.TAG;
  *
  */
 
-public class SwipableProductFragment extends Fragment  implements GListener.Callbacks {
+public class SwipableProductFragment extends Fragment  implements GListener.Callbacks, ImageAdapter.ImageInterface {
 
 
     private static final int LOGIN_REQUEST_CODE = 2255;
@@ -48,8 +57,10 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
     @BindView(R.id.vp_root)
     CardView mRoot;
     Product p; // The Product That we Show
-    @BindView(R.id.vp_image)
-    ImageView pImage;
+    @BindView(R.id.vp_image_pager)
+    ViewPager imagePager;
+    @BindView(R.id.top_indicator)
+    InkPageIndicator mPagerIndicator;
 
 
 
@@ -86,15 +97,17 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
 
         final GestureDetector mGdt = new GestureDetector(mContext,new GListener(this));
 
-        Picasso.with(mContext)
-                .load(R.mipmap.godofwar)
-                .config(Bitmap.Config.ALPHA_8)
-                .into(pImage);
+
 
         Log.d(TAG, "setting Trans Name : "+getArguments().getString(BundleKey.TRANS_NAME));
-        pImage.setTransitionName(getArguments().getString(BundleKey.TRANS_NAME));
 
 
+
+        List<ProductImage> mList = populateImages();
+
+        ImageAdapter mAdapter = new ImageAdapter(mContext, mList ,this);
+        imagePager.setAdapter(mAdapter);
+        mPagerIndicator.setViewPager(imagePager);
 
         mLikeButton.setOnLikeListener(new OnLikeListener() {
             @Override
@@ -131,6 +144,16 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
 
         return v;
     }
+
+    private List<ProductImage> populateImages() {
+        List<ProductImage> mImages = new ArrayList<>();
+        mImages.add(new ProductImage(R.mipmap.fifa));
+        mImages.add(new ProductImage(R.mipmap.godofwar));
+        mImages.add(new ProductImage(R.mipmap.sapiens));
+        mImages.add(new ProductImage(R.mipmap.ac2));
+        return  mImages;
+
+            }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -220,9 +243,8 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
 
     }
 
+    @Override
+    public void imageClicked(ProductImage p) {
 
-
-
-
-
+    }
 }

@@ -242,7 +242,7 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
         i.putExtra(BundleKey.TRANS_NAME,trnasName);
         Pair<View, String> p1 = Pair.create((View)img, trnasName);
         ActivityOptionsCompat options = makeSceneTransitionAnimation(getActivity(), p1);
-        getActivity().startActivity(i, options.toBundle());
+        getParentFragment().getActivity().startActivity(i, options.toBundle());
 
     }
 
