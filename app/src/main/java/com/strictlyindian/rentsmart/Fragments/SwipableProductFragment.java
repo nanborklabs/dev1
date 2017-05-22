@@ -91,6 +91,8 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
                 .config(Bitmap.Config.ALPHA_8)
                 .into(pImage);
 
+        Log.d(TAG, "setting Trans Name : "+getArguments().getString(BundleKey.TRANS_NAME));
+        pImage.setTransitionName(getArguments().getString(BundleKey.TRANS_NAME));
 
 
 
@@ -135,14 +137,17 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            Gson gs = new Gson();
+            /*Gson gs = new Gson();
             String pJson = getArguments().getString(BundleKey.ARG_PRODUCT);
             this.p = gs.fromJson(pJson, Product.class);
-            Log.d(TAG, "onCreate: VP FRAG got Product " + p.getPid());
+            Log.d(TAG, "onCreate: VP FRAG got Product " + p.getPid());*/
+
         }
 
 
     }
+
+
 
     @Override
     public void onDestroyView() {

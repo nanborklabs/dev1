@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -38,9 +39,10 @@ public class PlaidViewActivity extends AppCompatActivity {
     @BindView(R.id.shot)
     ParallaxScrimageView imageView;
     @BindView(R.id.dribbble_comments)
-    RecyclerView commentsList;
+    FrameLayout commentsList;
     @BindView(R.id.fab_heart)
     FABToggle fab;
+
     View top;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,8 +60,8 @@ public class PlaidViewActivity extends AppCompatActivity {
         }
         top = getLayoutInflater().inflate(R.layout.dribbble_shot_title,
                 commentsList, false);
-        TextView title = (TextView) top.findViewById(R.id.shot_title);
-        TextView desc = (TextView) top.findViewById(R.id.shot_description);
+//        TextView title = (TextView) top.findViewById(R.id.shot_title);
+//        TextView desc = (TextView) top.findViewById(R.id.shot_description);
 
 
     }

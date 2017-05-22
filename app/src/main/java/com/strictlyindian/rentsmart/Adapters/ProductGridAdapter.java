@@ -83,7 +83,7 @@ public class ProductGridAdapter extends BaseAdapter {
                 .transform(new RoundedCornersTransformation(10,5))
                 .into(im);
         final  int pos = position;
-        im.setTransitionName("pos"+position);
+        mView.setTransitionName("pos"+position);
         mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,7 +106,7 @@ public class ProductGridAdapter extends BaseAdapter {
             }
         });
 
-        runEnteranim(convertView,position);
+//        runEnteranim(convertView,position);
         return convertView;
 
 

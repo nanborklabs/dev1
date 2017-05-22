@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.SharedElementCallback;
 import android.support.v4.util.Pair;
 import android.support.v4.view.ViewPager;
+import android.transition.Explode;
 import android.transition.Fade;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import com.strictlyindian.rentsmart.Adapters.ComboAdapter;
 import com.strictlyindian.rentsmart.Adapters.MainFragmentAdapter;
 import com.strictlyindian.rentsmart.Adapters.ProductGridAdapter;
 import com.strictlyindian.rentsmart.CustomUI.CustomGridView;
+import com.strictlyindian.rentsmart.CustomUI.ElasticDragDismissFrameLayout;
 import com.strictlyindian.rentsmart.CustomUI.InkPageIndicator;
 import com.strictlyindian.rentsmart.CustomUI.ViewProductActivity;
 import com.strictlyindian.rentsmart.MainActivity;
@@ -36,7 +39,9 @@ import com.strictlyindian.rentsmart.utils.ScreenUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.app.Activity.RESULT_OK;
 import static android.support.v4.app.ActivityOptionsCompat.makeSceneTransitionAnimation;
+import static com.strictlyindian.rentsmart.R.id.shot;
 
 /**
  * Created by nandhu on 20/4/17.
@@ -60,6 +65,7 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
     CustomGridView mGridView;
     private Context mContext;
     private int view_type;
+    private ElasticDragDismissFrameLayout.SystemChromeFader chromeFader;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,7 +81,16 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
         ButterKnife.bind(this, view);
 
 
+
+
+
         return view;
+    }
+
+    void setResultAndFinish() {
+        final Intent resultData = new Intent();
+
+        getActivity().finishAfterTransition();
     }
 
     @Override
@@ -236,6 +251,25 @@ public class BrosweProductFragments extends Fragment implements ComboAdapter.Com
     @Override
     public void miniShow(View hold, int pid, int pos) {
         Log.d(TAG, "miniShow: ");
+        ImageView img = (ImageView) hold.findViewById(R.id.p_item_image);
+        String trnasName ="pos"+pos;
+        Log.d(TAG, "Transition Name in " + trnasName);
+        SwipableProductFragment mFragment = new SwipableProductFragment();
+        Bundle b = new Bundle();
+        b.putString(BundleKey.TRANS_NAME, trnasName);
+        mFragment.setArguments(b);
+        mFragment.setEnterTransition(new DetailsTransition());
+        mFragment.setExitTransition(new DetailsTransition());
+        mFragment.setSharedElementEnterTransition(new DetailsTransition());
+        mFragment.setReenterTransition(new DetailsTransition());
+
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack("mini")
+                .addSharedElement(hold,trnasName)
+                .replace(R.id.frag_holder_main,mFragment)
+                .commit();
+
     }
 
 
