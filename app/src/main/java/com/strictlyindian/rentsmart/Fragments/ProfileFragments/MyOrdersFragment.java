@@ -4,20 +4,27 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.strictlyindian.rentsmart.Adapters.NoOrderAdapter;
 import com.strictlyindian.rentsmart.Adapters.ProfileAdapter;
 import com.strictlyindian.rentsmart.Fragments.ProfileFragment;
+import com.strictlyindian.rentsmart.Model.Product;
 import com.strictlyindian.rentsmart.R;
+import com.strictlyindian.rentsmart.StorageHelpers.CartHandler;
 import com.strictlyindian.rentsmart.utils.ScreenUtil;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +36,7 @@ import butterknife.ButterKnife;
  * provided by {@link ProfileAdapter}
  */
 
-public class MyOrdersFragment extends Fragment {
+public class MyOrdersFragment extends Fragment implements NoOrderAdapter.NoOrderListCallback {
     private static final String TAG = "BOOKAHOLIC";
 
 
@@ -83,6 +90,7 @@ public class MyOrdersFragment extends Fragment {
         //Infalting Views
         View view = LayoutInflater.from(mContext).inflate(R.layout.my_orders, container, false);
         ButterKnife.bind(this, view);
+        showNoOrders();
 
 
         //FIrst Hit the Webservices get Any orders
@@ -94,10 +102,17 @@ public class MyOrdersFragment extends Fragment {
 
 
     public void showNoOrders() {
+
+//        Hit the JSON Webservices here
         try {
-            mRootFrame.removeAllViews();
-            View noOrders = View.inflate(mContext, R.layout.no_ordrers, mRootFrame);
-            ButterKnife.bind(this, noOrders);
+
+            if (mRootFrame != null) {
+
+
+                mRootFrame.removeAllViews();
+                View noOrders = View.inflate(mContext, R.layout.no_ordrers, mRootFrame);
+                ButterKnife.bind(this, noOrders);
+            }
 //            ImageView cart = (ImageView) noOrders.findViewById(R.id.no_order_image);
 //            TextView mNoOrderText = noOrders.findViewById(R.id.);
 //            FrameLayout mLoadingIndicatorFrame;
@@ -105,8 +120,22 @@ public class MyOrdersFragment extends Fragment {
 //            TextView noOrderIndicatorText;
 //            RelativeLayout mIndicatorHOlder;
 
-             AnimateNoOrderPager();
-//
+
+
+            try {
+                if (mNoOrdersRootFrame != null){
+                    mNoOrdersRootFrame.removeAllViews();
+                    View ListView = View.inflate(mContext,R.layout.recyler_view,mNoOrdersRootFrame);
+                    RecyclerView mList = (RecyclerView) ListView.findViewById(R.id.list);
+                    List<Product> mListProducts = CartHandler.getInstance(mContext).getMockProducts();
+                    NoOrderAdapter mListAdapter = new NoOrderAdapter(mContext, mListProducts,this);
+                }
+
+            }
+
+            catch (Exception e){
+                Log.d(TAG, "showNoOrders: Exeption");
+            }
 
         }
         catch (Exception e ){
@@ -114,9 +143,7 @@ public class MyOrdersFragment extends Fragment {
         }
     }
 
-    private void AnimateNoOrderPager() {
-        mNoOrderImage.setTranslationY(ScreenUtil.getScreenHeight(mContext));
-    }
+
 
     @Override
     public void onDestroyView() {
@@ -165,5 +192,10 @@ public class MyOrdersFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void addToCart(int pos, int pid) {
+
     }
 }

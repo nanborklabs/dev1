@@ -29,5 +29,6 @@
     <string name="need_login">Just a Sec !</string>
     <string name="trans_name_login">login</string>
     <string name="search_text"><![CDATA[Seach for books,authors, Publishers, Exams & Info\'s]]></string>
+    <string name="crime_mystery"><![CDATA[Crime & Mystery]]></string>
 
 </resources>
