@@ -3,16 +3,21 @@ package com.strictlyindian.rentsmart.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.strictlyindian.rentsmart.Adapters.ProfileAdapter;
 import com.strictlyindian.rentsmart.R;
-import com.strictlyindian.rentsmart.utils.ScreenUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +31,22 @@ import jp.wasabeef.picasso.transformations.BlurTransformation;
 public class ProfileFragment extends Fragment {
 
 
+
+
+
+    //The Main Views
+    @BindView(R.id.profile_collapsing_toolbar)
+    CollapsingToolbarLayout mCollapsingToolbar;
+    @BindView(R.id.profile_tab)
+    TabLayout mTabLayout;
+    @BindView(R.id.profile_pager)
+    ViewPager mPager;
+    @BindView(R.id.profile_pager_holder)
+    LinearLayout mPagerHolder;
+
+
+
+    //The Views inside Collapsing Toolbar
     @BindView(R.id.profile_bg_image)
     ImageView mBackgroundImage;
     @BindView(R.id.profile_image)
@@ -63,8 +84,16 @@ public class ProfileFragment extends Fragment {
                 .transform(new BlurTransformation(mContext))
                 .into(mBackgroundImage);
 
+        setUpPager();
+
 
         return v;
+    }
+
+    private void setUpPager() {
+        ProfileAdapter mAdapter = new ProfileAdapter(getChildFragmentManager());
+        mPager.setAdapter(mAdapter);
+        mTabLayout.setupWithViewPager(mPager);
     }
 
     @Override
